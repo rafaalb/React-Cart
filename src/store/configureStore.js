@@ -1,7 +1,14 @@
 import {createStore, compose, applyMiddleware} from 'redux';
+import { persistStore, persistReducer } from 'redux-persist';
+import storage from 'redux-persist/lib/storage';
 import reduxImmutableStateInvariant from 'redux-immutable-state-invariant';
 import thunk from 'redux-thunk';
 import rootReducer from '../reducers';
+
+const persistConfig = {
+  key: 'root',
+  storage,
+};
 
 function configureStoreProd(initialState) {
   const middlewares = [
@@ -31,10 +38,12 @@ function configureStoreDev(initialState) {
   ];
 
   const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose; // add support for Redux dev tools
-  const store = createStore(rootReducer, initialState, composeEnhancers(
+  const persistedReducer = persistReducer(persistConfig, rootReducer)
+  const store = createStore(persistedReducer, initialState, composeEnhancers(
     applyMiddleware(...middlewares)
     )
   );
+  const persistor = persistStore(store);
 
   if (module.hot) {
     // Enable Webpack hot module replacement for reducers
@@ -44,7 +53,7 @@ function configureStoreDev(initialState) {
     });
   }
 
-  return store;
+  return { store, persistor };
 }
 
 const configureStore = process.env.NODE_ENV === 'production' ? configureStoreProd : configureStoreDev;
