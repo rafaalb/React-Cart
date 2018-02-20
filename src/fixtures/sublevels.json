@@ -1,0 +1,57 @@
+{
+  "1": {
+    "name" : "Gaseosas",
+    "id": "1",
+    "sublevels": ["2", "3"]
+  },
+  "2": {
+    "name": "Con azucar",
+    "id": "2",
+    "sublevels": []
+  },
+  "3": {
+    "name": "Sin azucar",
+    "id": "3",
+    "sublevels": []
+  },
+  "4": {
+    "name": "Fake 1",
+    "id": "4",
+    "sublevels": ["5", "6"]
+  },
+  "5": {
+    "name": "Fake 2",
+    "id": "5",
+    "sublevels": []
+  },
+  "6": {
+    "name": "Fake 3",
+    "id": "6",
+    "sublevels": ["7"]
+  },
+  "7": {
+    "name": "Fake 4",
+    "id": "7",
+    "sublevels": []
+  },
+  "9": {
+    "name": "Fake 5",
+    "id": "9",
+    "sublevels": []
+  },
+  "10": {
+    "name": "Fake 6",
+    "id": "10",
+    "sublevels": []
+  },
+  "12": {
+    "name": "Fake 8",
+    "id": "12",
+    "sublevels": []
+  },
+  "13": {
+    "name": "Fake 9",
+    "id": "13",
+    "sublevels": []
+  }
+}

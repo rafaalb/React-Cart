@@ -1,6 +1,6 @@
-## react-redux-template-for-ecommerce-site
 
-A beautiful e-commerce template with flat design.
+
+#React Ecommerce, Cart template.
 
 ## Installation
 
@@ -8,6 +8,4 @@ A beautiful e-commerce template with flat design.
 *  `yarn install`
 *  `yarn start`
 
-Open `localhost:8080` to open the app!
-
-Demo - https://ecommerce-template.now.sh/
+Open `localhost:8080`. Voila!

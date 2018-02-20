@@ -1,10 +1,13 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router';
-
+import _ from 'lodash';
+import { connect } from 'react-redux';
+import Proptypes from 'prop-types';
 import './styles.sass';
 
-class Header extends Component {
+import cartIcon from './../../assets/icons/ic_cart_gray@2x.png';
 
+class Header extends Component {
   constructor(props) {
     super(props);
     this.state = {};
@@ -51,6 +54,7 @@ class Header extends Component {
   }
 
   render() {
+    const { cart } = this.props;
     return (
       <header className="header">
         <h1>
@@ -63,11 +67,13 @@ class Header extends Component {
           <Link onlyActiveOnIndex={true} key={1} to="/" activeClassName="activeNavLink" className="navLink">
             Home
           </Link>
-          <Link onlyActiveOnIndex={true} key={3} to="/trades" activeClassName="activeNavLink" className="navLink">
-            Trades
-          </Link>
-          <Link onlyActiveOnIndex={true} key={4} to="/login" activeClassName="activeNavLink" className="navLink">
-            Login
+          <Link onlyActiveOnIndex={true} key={3} to="/myItems" activeClassName="activeNavLink" className="navLink">
+              <div className="containerCart">
+                <div className="rounded">
+                  <i className="text">{_.size(cart)}</i>
+                </div>
+                <img src={cartIcon} className="cart" />
+              </div>
           </Link>
         </div>
       </header>
@@ -75,4 +81,12 @@ class Header extends Component {
   }
 }
 
-export default Header;
+const mapStateToProps = (state) => {
+  return state;
+};
+
+Header.propTypes = {
+    cart: Proptypes.object.isRequired
+};
+
+export default connect(mapStateToProps)(Header);

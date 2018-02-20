@@ -1,0 +1,41 @@
+@import '../../styles/variables.sass'
+
+.myItemsWrapper
+  padding: 1rem 0 2rem 0
+  min-height: 40vh
+  .addTradeWrapper
+    display: flex
+    justify-content: flex-end
+    margin: 0 0 3rem 0
+  .allItemsBtn
+    border-bottom: solid 2px
+  .tradeBtn
+    color: $light-grey
+    font-size: .9rem
+    font-weight: 700
+    padding: 0
+    background: transparent
+    text-transform: uppercase
+    transition: all, .3s
+    cursor: pointer
+    &:hover
+      color: $black
+  .backLink
+    font-size: .9rem
+    color: $grey
+    cursor: pointer
+    transition: color .2s
+    font-weight: 500
+    span.small
+      svg
+        transform: rotateZ(90deg)
+        transition: color .2s
+        fill: $grey
+        font-weight: 800
+    &:hover, &:active
+      color: $black
+      span svg
+        fill: $black
+.deleteBtn
+  background: $black
+  color: #fff
