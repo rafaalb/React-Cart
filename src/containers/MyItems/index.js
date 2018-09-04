@@ -1,25 +1,25 @@
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import _ from 'lodash';
-import CartItem from './../CartItems';
-import Money from './../../transforms/Money';
-import { Link, browserHistory } from 'react-router';
-import { resetCart } from './../../actions/cart';
-import './styles.sass';
+import React, { Component } from 'react' 
+import { connect } from 'react-redux' 
+import _ from 'lodash' 
+import CartItem from './../CartItems' 
+import Money from './../../transforms/Money' 
+import { Link, browserHistory } from 'react-router' 
+import { resetCart } from './../../actions/cart' 
+import './styles.sass' 
 
 class MyItems extends Component {
 
   componentDidMount() {
-    document.body.scrollTop = 0;
-    document.querySelector('.menu').classList.remove('open');
+    document.body.scrollTop = 0 
+    document.querySelector('.menu').classList.remove('open') 
   }
 
   renderItems() {
-    const haveItems = _.size(this.props.cart);
+    const haveItems = _.size(this.props.cart) 
     if (haveItems > 0) {
       return Object.keys(this.props.cart).map((key) => {
-           return <CartItem key={key} product={this.props.cart[key]} />;
-       });
+           return <CartItem key={key} product={this.props.cart[key]} /> 
+       }) 
     }
     return (
       <div>
@@ -42,13 +42,13 @@ class MyItems extends Component {
 
   }
   resetCart() {
-    this.props.resetCart();
-    browserHistory.push(`/`);
+    this.props.resetCart() 
+    browserHistory.push(`/`) 
   }
   render() {
     const total = Object.keys(this.props.cart).reduce((acum, key) => (
       (acum + (Money(this.props.cart[key].price) * this.props.cart[key].quantityInCart))
-     ), 0);
+     ), 0) 
     return (
       <div className="myItemsWrapper">
         <div className="addTradeWrapper" />
@@ -64,8 +64,8 @@ class MyItems extends Component {
           </button>
         </div>
       </div>
-    );
+    ) 
   }
 }
 
-export default connect(state => state, { resetCart })(MyItems);
+export default connect(state => state, { resetCart })(MyItems) 

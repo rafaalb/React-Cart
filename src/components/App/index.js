@@ -1,10 +1,10 @@
-import React, { Component, PropTypes } from 'react';
-import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
+import React, { Component, PropTypes } from 'react' 
+import ReactCSSTransitionGroup from 'react-addons-css-transition-group' 
 
-import Header from '../Header/index';
-import Footer from '../Footer/index';
-import './styles.sass';
-import '../../styles/animation.sass';
+import Header from '../Header/index' 
+import Footer from '../Footer/index' 
+import './styles.sass' 
+import '../../styles/animation.sass' 
 
 class App extends Component {
   render() {
@@ -21,7 +21,7 @@ class App extends Component {
           </div>
         </ReactCSSTransitionGroup>
       </div>
-    );
+    ) 
   }
 }
 
@@ -29,6 +29,6 @@ App.propTypes = {
   children: PropTypes.element,
   location: PropTypes.object,
   "location.pathname": PropTypes.string
-};
+} 
 
-export default App;
+export default App 

@@ -1,11 +1,11 @@
-import React from 'react';
-import { Route, IndexRoute } from 'react-router';
+import React from 'react' 
+import { Route, IndexRoute } from 'react-router' 
 
-import App from './components/App/index';
-import Main from './containers/Main/index';
-import ItemPage from './containers/ItemPage/index';
-import MyItems from './containers/MyItems/index';
-import ErrorPage from './components/ErrorPage/index';
+import App from './components/App/index' 
+import Main from './containers/Main/index' 
+import ItemPage from './containers/ItemPage/index' 
+import MyItems from './containers/MyItems/index' 
+import ErrorPage from './components/ErrorPage/index' 
 
 export default (
   <Route path="/" component={App}>
@@ -14,4 +14,4 @@ export default (
     <Route path="myItems" component={MyItems} />
     <Route path="*" component={ErrorPage} />
   </Route>
-);
+) 

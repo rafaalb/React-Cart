@@ -1,4 +1,4 @@
-export const itemsPerPage = 9;
+export const itemsPerPage = 9 
 export const sortTypes = [
   {
     value: 'quantity',
@@ -12,4 +12,4 @@ export const sortTypes = [
     value: 'available',
     label: 'Availability'
   },
-];
+] 

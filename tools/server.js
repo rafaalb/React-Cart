@@ -22,7 +22,6 @@ if (environment !== "production") {
 
   const bundler = webpack(config);
 
-  app.use(express.static('src/*.html'));
   app.use(historyApiFallback());
   app.use(webpackHotMiddleware(bundler));
   app.use(webpackDevMiddleware(bundler, {

@@ -1,5 +1,5 @@
-import React, { Component } from 'react';
-import './styles.sass';
+import React, { Component } from 'react' 
+import './styles.sass' 
 
 class Footer extends Component {
   render() {
@@ -7,8 +7,8 @@ class Footer extends Component {
       <footer className="footer">
         <p className="has-link" />
       </footer>
-    );
+    ) 
   }
 }
 
-export default Footer;
+export default Footer 

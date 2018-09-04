@@ -1,48 +1,52 @@
-import React, { Component } from 'react';
-import { fetchProduct } from './../../actions/products';
-import { addToCart } from './../../actions/cart';
-import { connect } from 'react-redux';
-import { ClipLoader } from 'react-spinners';
-import { Link } from 'react-router';
-import './styles.sass';
+import React, { Component } from 'react' 
+import { fetchProduct, initProducts } from './../../actions/products' 
+import { addToCart } from './../../actions/cart' 
+import { connect } from 'react-redux' 
+import { ClipLoader } from 'react-spinners' 
+import { Link } from 'react-router' 
+import './styles.sass' 
 
 class ItemPage extends Component {
   constructor(props) {
     super(props)
     this.state = {
       loading: false
-    };
+    } 
   }
   componentWillMount() {
-    const { id } = this.props.params;
-    this.props.fetchProduct(id);
+    const { id } = this.props.params 
+    this.props.fetchProduct(id) 
   }
   componentDidMount() {
-    document.body.scrollTop = 0;
-    document.querySelector('.menu').classList.remove('open');
+    document.body.scrollTop = 0 
+    document.querySelector('.menu').classList.remove('open') 
   }
   addToCart(product) {
-    this.setState({ loading: true });
+    this.setState({ loading: true }) 
     setTimeout(() => {
-        this.props.addToCart(product);
-        this.setState({ loading: false });
-    }, 2000);
+        this.props.addToCart(product) 
+        this.setState({ loading: false }) 
+    }, 2000) 
 
   }
+  goBack() {
+    this.props.initProducts()
+    this.props.router.push('/')
+  }
   render() {
-    const { activeProduct } = this.props;
+    const { activeProduct } = this.props 
     return (
       <div className="itemPageWrapper">
         <img className="itemImgWrapper" src="https://picsum.photos/350/200/?random"/>
         <div className="itemInfoWrapper">
-          <Link className="backLink" to="/">
+          <span className="backLink" onClick={this.goBack.bind(this)}>
             <span className="small">
               <svg fill="#000000" height="13" viewBox="0 0 18 15" width="13" xmlns="http://www.w3.org/2000/svg">
                 <path d="M7 10l5 5 5-5z"/>
                 <path d="M0 0h24v24H0z" fill="none"/>
               </svg>
             </span>All Items
-          </Link>
+          </span>
           <h3 className="itemName">{activeProduct.name}</h3>
           <p className="itemCost frm">{activeProduct.price}</p>
           <p className="description">
@@ -65,8 +69,8 @@ class ItemPage extends Component {
           </button>
         </div>
       </div>
-    );
+    ) 
   }
 }
 
-export default connect(state => state, { fetchProduct, addToCart })(ItemPage);
+export default connect(state => state, { initProducts, fetchProduct, addToCart })(ItemPage) 

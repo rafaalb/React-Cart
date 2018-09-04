@@ -1,42 +1,42 @@
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
+import React, { Component } from 'react' 
+import { connect } from 'react-redux' 
+import { bindActionCreators } from 'redux' 
 import {
   updateQuantity,
   removeProduct
-} from './../../actions/cart';
-import { ClipLoader } from 'react-spinners';
+} from './../../actions/cart' 
+import { ClipLoader } from 'react-spinners' 
 
-import { Link } from 'react-router';
+import { Link } from 'react-router' 
 
-import './styles.sass';
+import './styles.sass' 
 
 class CartItem extends Component {
   constructor(props) {
     super(props)
     this.state = {
       loading: false
-    };
+    } 
   }
   updateQuantity(quantity) {
-    const { id } = this.props.product;
+    const { id } = this.props.product 
     if (quantity === 0) {
-      this.props.removeProduct(id);
+      this.props.removeProduct(id) 
     } else {
-      this.props.updateQuantity(quantity, id);
+      this.props.updateQuantity(quantity, id) 
     }
   }
   removeProduct() {
-    const { id } = this.props.product;
-    this.setState({ loading: true });
+    const { id } = this.props.product 
+    this.setState({ loading: true }) 
     setTimeout(() => {
-        this.props.removeProduct(id);
-        this.setState({ loading: false });
-    }, 2000);
+        this.props.removeProduct(id) 
+        this.setState({ loading: false }) 
+    }, 2000) 
   }
   render() {
-    const { id } = this.props.product;
-    const product = this.props.cart[id];
+    const { id } = this.props.product 
+    const product = this.props.cart[id] 
     return (
       <div className="uIWrapper">
         <div className="upper">
@@ -80,7 +80,7 @@ class CartItem extends Component {
           </div>
         </div>
       </div>
-    );
+    ) 
   }
 }
 
@@ -92,6 +92,6 @@ const mapDispatchToProps = (dispatch) => (
     },
     dispatch
   )
-);
+) 
 
-export default connect(state => state, mapDispatchToProps)(CartItem);
+export default connect(state => state, mapDispatchToProps)(CartItem) 

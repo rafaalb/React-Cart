@@ -1,77 +1,76 @@
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
+import React, { Component } from 'react'
+import { connect } from 'react-redux'
 import {
   getSubLevels,
   getProductsBySubLevel,
   sortProducts,
   filterProducts
-} from './../../actions/products';
-import FontAwesome from 'react-fontawesome';
-import Select from 'react-select';
-import { sortTypes } from './../../constants/utils';
+} from './../../actions/products'
+import FontAwesome from 'react-fontawesome'
+import Select from 'react-select'
+import { sortTypes } from './../../constants/utils'
 
-import './styles.sass';
+import './styles.sass'
 
 class FilterSection extends Component {
   constructor(props) {
-    super(props);
+    super(props)
     this.state = {
       animate: false,
       selectedOption: [],
       selectedFilters: {
-        minPrice: 0,
-        maxPrice: 0,
-        availability: false,
+        minPrice: '',
+        maxPrice: '',
+        availability: null,
         minQuantity: 0,
         maxQuantity: 0,
       },
-      selectedFilterAvail: '',
       selectedSort: '',
       showInputPrice: false,
       showInputAvailab: false,
       showInputQuantity: false,
-    };
+    }
   }
   componentWillMount() {
-    this.props.getSubLevels();
+    this.props.getSubLevels()
   }
 
   filterProduct(sel) {
-    const val = sel ? sel.value : sel;
+    const val = sel ? sel.value : sel
     this.setState({
       selectedFilters: {
         ...this.state.selectedFilters,
         availability: val
       }
     }, () => {
-      this.props.filterProducts(this.state.selectedFilters);
-    });
+      this.props.filterProducts(this.state.selectedFilters)
+    })
 
   }
   handleChanges (sel) {
-    const addedItem = sel[sel.length - 1];
-    const id = addedItem ? addedItem.id : undefined; //filter the last added item and retrieve its sublevels
-    this.props.getSubLevels(id);
-    this.props.getProductsBySubLevel(id);
-    this.setState({ selectedOption: sel });
-    this.setState({ offset: 0 });
+    const addedItem = sel[sel.length - 1]
+    const id = addedItem ? addedItem.id : undefined  //filter the last added item and retrieve its sublevels
+    this.props.getSubLevels(id)
+    this.props.getProductsBySubLevel(id)
+    this.setState({ selectedOption: sel })
+    this.setState({ offset: 0 })
   }
   sortProducts(sel) {
     if (sel) {
-      this.props.sortProducts(sel.value);
+      this.props.sortProducts(sel.value)
     }
     this.setState({ selectedSort: sel })
   }
   onInputFilterProduct(input, field) {
     this.setState({ selectedFilters: {
       ...this.state.selectedFilters,
-      [field]: input
+      [field]: Number(input)
     }}, () => {
-      this.props.filterProducts(this.state.selectedFilters);
-    });
+      this.props.filterProducts(this.state.selectedFilters)
+    })
   }
   render() {
-    const { selectedOption } = this.state;
+    const { selectedOption } = this.state
     return(
       <div>
         <ol className="breadcrumb">
@@ -131,14 +130,10 @@ class FilterSection extends Component {
                     value={this.state.selectedFilters.availability}
                     onChange={(e) => this.filterProduct(e)}
                     options={[
-                      { value: 'available', label: 'Available'},
-                      { value: 'notavailable', label: 'Not Available'}
+                      { value: true, label: 'Available'},
+                      { value: false, label: 'Not Available'}
                     ]}
-                    style={{
-                      fontColor: 'black',
-                      backgroundColor: 'transparent',
-                      borderColor: 'transparent'
-                    }}
+                    className='selectBtn'
                   />
                   </div>
                 )}
@@ -202,15 +197,25 @@ class FilterSection extends Component {
          </div>
       </div>
       </div>
-    );
+    )
   }
-
 }
 
+const mapDispatchToProps = (dispatch) => {
+  return {
+    getSubLevels: (id) => {
+      dispatch(getSubLevels(id))
+    },
+    getProductsBySubLevel: (id) => {
+      dispatch(getProductsBySubLevel(id))
+    },
+    sortProducts: (sort) => {
+      dispatch(sortProducts(sort))
+    },
+    filterProducts: (filt) => {
+      dispatch(filterProducts(filt))
+    }
+  }
+}
 
-export default connect(state => state, {
-  getSubLevels,
-  getProductsBySubLevel,
-  sortProducts,
-  filterProducts
-})(FilterSection);
+export default connect(state => state, mapDispatchToProps)(FilterSection)

@@ -3,7 +3,7 @@ import {
   UPDATE_QUANTITY,
   REMOVE_PRODUCT,
   RESET_CART
-} from './../actions/action_types';
+} from './../actions/action_types' 
 
 
 export const cart = (state = {} , action) => {
@@ -15,7 +15,7 @@ export const cart = (state = {} , action) => {
           ...action.payload,
           quantityInCart: state[action.payload.id] ? state[action.payload.id].quantityInCart + 1 : 1,
         }
-      };
+      } 
     case UPDATE_QUANTITY:
       return {
         ...state,
@@ -23,17 +23,16 @@ export const cart = (state = {} , action) => {
           ...state[action.payload.id],
           quantityInCart: action.payload.quantity
         }
-      };
+      } 
     case REMOVE_PRODUCT: {
-      const newState = Object.assign({}, state);
-      delete newState[action.payload];
-      return newState;
+      const { [action.payload]: toDelete, ...rest } = state 
+      return rest 
     }
     case RESET_CART:
       return {
 
-      };
+      } 
     default:
-      return state;
+      return state 
   }
-};
+} 
