@@ -1,15 +1,14 @@
-import React, { Component } from 'react'
+import React from 'react'
 // import {Link} from 'react-router'
+import Proptypes from 'prop-types'
 import { browserHistory } from 'react-router'
-
-import cartIcon from './../../assets/icons/ic_cart_gray.png'
 import './styles.sass'
 
 const Item = ({ product }) => {
     return(
       <div className="item">
         <div className="content" onClick={()=>{
-          browserHistory.push(`/item/${product.id}`) 
+          browserHistory.push(`/item/${product.id}`)
         }}>
         <div className="thumbnail">
           <img src={product.image} className="img-thumbnail"/>
@@ -30,6 +29,10 @@ const Item = ({ product }) => {
         </div>
       </div>
     )
+}
+
+Item.propTypes = {
+    product: Proptypes.object.isRequired
 }
 
 export default Item

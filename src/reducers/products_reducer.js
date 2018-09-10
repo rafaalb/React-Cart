@@ -5,9 +5,9 @@ import {
   GET_PRODUCTS_BY_SUB_LEVEL,
   SORT_PRODUCTS,
   FILTER_PRODUCTS
-} from './../actions/action_types' 
+} from './../actions/action_types'
 
-import Money from './../transforms/Money' 
+import Money from './../transforms/Money'
 
 const initialState = {
   data: [],
@@ -22,41 +22,42 @@ const initialState = {
 export const products = (state = initialState, action) => {
   switch (action.type) {
     case INIT_PRODUCT:
-      return { ...state, data: action.payload } 
+      return { ...state, data: action.payload }
     case GET_PRODUCTS_BY_SUB_LEVEL:
-      return { ...state, data: action.payload } 
-    case SORT_PRODUCTS:
+      return { ...state, data: action.payload }
+    case SORT_PRODUCTS: {
       const sorted = state.data.concat().sort((a, b) => {
-        let keyA = a[action.payload] 
-        let keyB = b[action.payload] 
+        let keyA = a[action.payload]
+        let keyB = b[action.payload]
         if (action.payload === 'price') {
-          keyA = Money(keyA) 
-          keyB = Money(keyB) 
+          keyA = Money(keyA)
+          keyB = Money(keyB)
         }
-        return keyA - keyB 
-      }) 
-      return { ...state, data: sorted } 
+        return keyA - keyB
+      })
+      return { ...state, data: sorted }  
+    }
     case FILTER_PRODUCTS:
-      return { ...state, filters: action.filters } 
+      return { ...state, filters: action.filters }
     default:
-      return state 
+      return state
   }
-} 
+}
 
 export const activeProduct = (state = [], action) => {
   switch (action.type) {
     case FETCH_PRODUCT:
-      return action.payload 
+      return action.payload
     default:
-      return state 
+      return state
   }
-} 
+}
 
 export const sublevels = (state = [], action) => {
   switch (action.type) {
     case SUBLEVELS_PRODUCT:
-      return action.payload 
+      return action.payload
     default:
-      return state 
+      return state
   }
-} 
+}
